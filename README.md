@@ -1,4 +1,4 @@
-# posn_hold
+# drone_posn_hold
 This repo is intended to provide position data to a onboard flight controller (PX4/CubePilot) from a motion capture system (vicon/optitrack). The intention was to provide a local position hold to enable better data collection for system identification purposes.
 
 Steps to using this package:
