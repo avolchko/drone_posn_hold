@@ -26,6 +26,15 @@ def generate_launch_description():
             name='set'
         ),
 
+        # include ros launch file to talk to optitrack
+        IncludeLaunchDescription(
+                PathJoinSubstitution([
+                    FindPackageShare('mocap4r2_optitrack_driver'),
+                    'launch',
+                    'optitrack2.launch.py'
+                ]),
+        ),
+
         # include ros launch file to talk to mavlink
         IncludeLaunchDescription(
                 PathJoinSubstitution([
@@ -35,13 +44,6 @@ def generate_launch_description():
                 ]),
         ),
 
-        # include ros launch file to talk to optitrack
-        IncludeLaunchDescription(
-                PathJoinSubstitution([
-                    FindPackageShare('mocap4r2_optitrack_driver'),
-                    'launch',
-                    'optitrack2.launch.py'
-                ]),
-        ),
+
 
     ])

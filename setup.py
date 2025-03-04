@@ -17,7 +17,7 @@ setup(
          (os.path.join('share', package_name, 'launch'), 
          glob(os.path.join('launch', '*launch.[pxy][yma]*')))
     ],
-    install_requires=['setuptools', 'geometry_msgs', 'mavros_msgs'],
+    install_requires=['setuptools', 'geometry_msgs', 'mavros_msgs', 'mocap_interfaces'],
     zip_safe=True,
     maintainer='bprl',
     maintainer_email='anvo9547@colorado.edu',
@@ -27,7 +27,7 @@ setup(
     entry_points={
         'console_scripts': [
             'cmd_local_posn = local_posn_pkg.cmd_local_posn:main',
-            'set_local_posn = local_posn_pkg.set_local_posn:main'
+            'set_local_posn = local_posn_pkg.set_local_posn:main',
         ],
     },
 )

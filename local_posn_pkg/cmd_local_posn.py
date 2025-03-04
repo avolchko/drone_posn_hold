@@ -3,14 +3,14 @@ from rclpy.node import Node
 
 from std_msgs.msg import String
 from geometry_msgs.msg import PoseStamped
+from mocap4r2_msgs.msg import RigidBodies
 
 
 class MinimalSubPub(Node):
 
     def __init__(self):
         super().__init__('minimal_subpub')
-        self.publisher_ = self.create_publisher(PoseStamped, '/mavros/setpoint_position/local', 10)
-        self.subscription = self.create_subscription(PoseStamped, '/mavros/setpoint_position/local', self.listener_callback, 10)
+        self.publisher_ = self.create_publisher(PoseStamped, '/setpoint_position/local', 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
@@ -21,9 +21,11 @@ class MinimalSubPub(Node):
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = "map"
 
-        msg.pose.position.x = 1.0
-        msg.pose.position.y = 2.0
-        msg.pose.position.z = 3.0
+
+        # set the position of the drone [m]
+        msg.pose.position.x = 1.1
+        msg.pose.position.y = 1.2
+        msg.pose.position.z = 1.3
 
         msg.pose.orientation.x = 0.0
         msg.pose.orientation.y = 0.0
@@ -36,10 +38,6 @@ class MinimalSubPub(Node):
 
         # publish to mavros
         # read error from mavros (subscribe to both current local pose and set pose)
-
-
-    def listener_callback(self, msg):
-        self.get_logger().info('I heard: "%f"' % msg.pose.position.x)
 
 
 def main(args=None):
